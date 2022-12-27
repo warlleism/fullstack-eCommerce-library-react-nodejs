@@ -21,7 +21,7 @@ const Detalhar = () => {
     }
     return (
         <>
-            <Header pagina={"Visualizar"} arrow={true} />
+            <Header pagina={"VISUALIZAR"} arrow={true} />
             <div className='detalhar-container'>
 
                 <div className='container-content'>

@@ -7,14 +7,12 @@
 }
 
 body::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
-
 
 body::-webkit-scrollbar-thumb {
   border-radius: 15px;
-  background-color: rgb(252, 144, 4);
-  border: 3px solid rgb(252, 252, 252);
+  background-color: rgb(26, 26, 26);
 }
 
 body {

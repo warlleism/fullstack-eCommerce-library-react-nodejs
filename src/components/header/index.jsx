@@ -1,39 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import './style.scss'
 
 const Header = (props) => {
 
-    const navBar = (value) => {
+    const [count, setCount] = useState(0)
+
+    const navBar = () => {
         const nav = document.getElementById('nav-bar')
-        nav.style.right = `${value}px`
-    }
+        const icons = document.getElementById('icons-nav-bar')
 
-    const movebeel = () => {
-        const bell = document.getElementById('bell')
-        setTimeout(() => {
-            bell.style.transform = 'rotate(10deg)'
-        }, 100)
+        if (count == 0) {
+            icons.style.opacity = 1
+            nav.style.height = `100vh`
+            nav.style.width = `500px`
+            nav.style.top = `0px`
+            nav.style.right = `0px`
+            nav.style.borderRadius = `0px`
+            setCount(count + 1)
+        } else {
+            icons.style.opacity = 0
+            nav.style.height = `43px`
+            nav.style.width = `43px`
+            nav.style.top = `45px`
+            nav.style.right = `30px`
+            nav.style.borderRadius = `100px`
+            setCount(count - 1)
 
-        setTimeout(() => {
-            bell.style.transform = 'rotate(-10deg)'
-        }, 200)
-
-        setTimeout(() => {
-            bell.style.transform = 'rotate(0deg)'
-        }, 300)
+        }
     }
 
     return (
         <div className='header-container'>
-
             <div className='logo-conteiner'>
                 <div className='logo'>
                     <Link to={'/'}>
-                        <div className='line'></div>
+                        <div className='line' style={{ background: "#f0ff05" }}></div>
                         <p style={{ marginBottom: -10 }}>Books <strong style={{ color: "#ffff00" }}>&</strong></p>
                         <p className='down-line'>Sales</p>
-                        <div className='line down-line'></div>
+                        <div className='line'></div>
                     </Link>
                 </div>
             </div>
@@ -42,20 +47,39 @@ const Header = (props) => {
                 {props.pagina}
             </div>
 
-            <div className='container-icons'>
-                <span class="material-symbols-outlined icon-header" id='bell'
-                    onClick={() => movebeel()}
-                    style={{ fontSize: "2.6rem", transition: ".1s" }}>
-                    notifications
-                </span>
-                <div className='glass'>
-                    <span class="material-symbols-outlined icon-header">
-                        search
+            <div className='menu-nav-bar' id='nav-bar'>
+                {
+                    count != 1
+                        ?
+                        <span class="material-symbols-outlined icon-header menu" onClick={() => navBar()}>
+                            menu
+                        </span>
+                        :
+                        <span class="material-symbols-outlined icon-header menu" onClick={() => navBar()}>
+                            close
+                        </span>
+                }
+
+                <div className='container-nav-bar-content'>
+                    <Link to={'/'}>Home</Link>
+                    <Link to={'/cadastrar'}>Criar publicação</Link>
+                    <Link to={'/editar'}>Editar publicação</Link>
+                </div>
+
+                <div className='container-nav-bar-content-icons' id='icons-nav-bar'>
+                    <span class="material-symbols-outlined">
+                        person
+                    </span>
+
+                    <span class="material-symbols-outlined">
+                        home
+                    </span>
+
+                    <span class="material-symbols-outlined">
+                        notifications
                     </span>
                 </div>
-                <span class="material-symbols-outlined icon-header" onClick={() => navBar(0)}>
-                    menu
-                </span>
+
             </div>
 
             {
@@ -69,29 +93,6 @@ const Header = (props) => {
                     :
                     false
             }
-
-
-            <div className='menu-nav-bar' id='nav-bar'>
-                <span class="material-symbols-outlined"
-                    onClick={() => navBar(-1200)}
-                    style={{
-                        width: "98%",
-                        marginTop: 20,
-                        color: "black",
-                        fontWeight: 900,
-                        textAlign: "end",
-                        cursor: 'pointer'
-                    }}>
-                    close
-                </span>
-
-                <div className='container-nav-bar-content'>
-                    <Link to={'/'}>Home</Link>
-                    <Link to={'/cadastrar'}>Criar publicação</Link>
-                    <Link to={'/editar'}>Editar publicação</Link>
-                </div>
-            </div>
-
         </div>
     )
 }

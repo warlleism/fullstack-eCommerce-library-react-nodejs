@@ -5,7 +5,7 @@ import './style.scss'
 const Form = () => {
     return (
         <>
-            <Header pagina={"Criar publicação"} arrow={true} />
+            <Header pagina={"NOVA PUBLICÃO"} arrow={true} />
             <div className='form-container'>
                 <div className='titulo'>Criar publicação</div>
 
