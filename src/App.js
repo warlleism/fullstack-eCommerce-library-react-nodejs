@@ -1,10 +1,10 @@
-import Body from './components/body';
 import './global.css';
+import Rotas from './routes/route';
 
 function App() {
   return (
     <div className="App">
-      <Body />
+      <Rotas />
     </div>
   );
 }
