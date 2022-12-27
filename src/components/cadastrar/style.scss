@@ -1,0 +1,113 @@
+
+.form-container {
+    width: 40%;
+    margin: 40px auto;
+    font-family: 'Inter', sans-serif;
+
+    .titulo {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .formulario {
+        width: 100%;
+        height: 100%;
+        padding: 40px;
+        display: flex;
+        border-radius: 5px;
+        flex-direction: column;
+        box-sizing: border-box;
+        background-color: #fff;
+        justify-content: space-between;
+
+        .container-nome-preco {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            .campo-input {
+                width: 48%;
+
+                input {
+                    width: 100%;
+                    height: 40px;
+                }
+            }
+        }
+
+        .campo-input {
+            display: flex;
+            position: relative;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            flex-direction: column;
+            border: 2px solid #FFA114;
+
+            input {
+                width: 100%;
+                border: none;
+                padding: 5px;
+                outline: none;
+                font-size: 1.5rem;
+                box-sizing: border-box;
+            }
+
+            span {
+                top: -15px;
+                left: 20px;
+                color: #FFA114;
+                padding: 0px 10px;
+                position: absolute;
+                text-align: center;
+                background-color: #fff;
+            }
+
+            textarea {
+                padding: 10px;
+                border: none;
+                outline: none;
+                height: 200px;
+                font-size: 1.5rem;
+                box-sizing: border-box;
+            }
+
+            .file-input {
+                opacity: 0;
+                width: 100%;
+                height: 200px;
+                cursor: pointer;
+
+            }
+
+            .container-input-file {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                position: absolute;
+                align-items: center;
+                pointer-events: none;
+                flex-direction: column;
+                justify-content: center;
+
+                .cloud-input-file {
+                    font-size: 7rem;
+                    font-weight: 100;
+                    position: static;
+                    background-color: transparent;
+                }
+            }
+
+        }
+
+        .buttom {
+            color: #fff;
+            padding: 10px 0;
+            font-weight: 300;
+            font-size: 1.2rem;
+            text-align: center;
+            border-radius: 5px;
+            background-color: #FFA114;
+        }
+    }
+}

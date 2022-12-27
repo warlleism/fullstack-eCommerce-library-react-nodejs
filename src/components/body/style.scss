@@ -1,0 +1,101 @@
+.body-container {
+    display: flex;
+    margin: 200px 100px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+
+    .background-line {
+        width: 50%;
+        height: 2px;
+        margin: 60px auto;
+        background: rgba(0, 0, 0, 0.219);
+    }
+
+    .container-card {
+        gap: 20px;
+        display: flex;
+        min-width: 40%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+
+        .titulo-body {
+            top: -30px;
+            left: 15px;
+            width: 100%;
+            font-weight: 700;
+            font-size: 1.3rem;
+            position: absolute;
+        }
+
+        .card {
+            width: 230px;
+            color: #fff;
+            height: 490px;
+            display: flex;
+            overflow: hidden;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            border-radius: 5px;
+            align-items: center;
+            flex-direction: column;
+            background-color: #0C0C0C;
+            justify-content: space-between;
+
+            .botao-saiba-mais {
+                height: 40px;
+                width: 140px;
+                display: flex;
+                cursor: pointer;
+                font-weight: 300;
+                font-size: 1.1rem;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                align-items: center;
+                justify-content: center;
+                background-color: #FF782C;
+            }
+
+            .board-line {
+                width: 90%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .nome-book {
+                    width: 80%;
+                    font-weight: 300;
+                    overflow: hidden;
+                    font-size: 1.2rem;
+                    text-align: center;
+                    position: relative;
+                    letter-spacing: 2px;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    text-overflow: ellipsis;
+                    -webkit-box-orient: vertical;
+                }
+
+                .line-name {
+                    width: 16px;
+                    height: 3px;
+                    background-color: #464646;
+                }
+            }
+
+            .preco {
+                font-size: 1.1rem;
+            }
+
+
+            img {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    }
+}
