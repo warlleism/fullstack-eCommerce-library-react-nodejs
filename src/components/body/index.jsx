@@ -2,6 +2,7 @@ import './style.scss'
 import Header from '../header'
 import { motion } from "framer-motion"
 import React, { useEffect, useRef, useState } from 'react'
+import Footer from '../footer'
 
 const Body = () => {
 
@@ -15,9 +16,8 @@ const Body = () => {
 
     return (
         <>
-            <Header pagina={"INÍCIO"} />
+            <Header pagina={'INÍCIO'} />
             <div className='body-container'>
-                <img src={require('../../image/ame.webp')} className="img-promocional" alt="" />
                 <motion.div ref={carrousel} whileTap={{ cursor: "grabbing" }} className="container" >
                     <div className='titulo-body'>NOVOS</div>
                     <motion.div
@@ -71,8 +71,10 @@ const Body = () => {
                         }
                     </motion.div>
                 </motion.div>
-                <div className='background-line'></div>
-
+                <div className='card-promo'>
+                    <img src={require('../../image/promo1.png')} alt="" />
+                    <img src={require('../../image/promo2.png')} alt="" />
+                </div>
                 <motion.div ref={carrousel} whileTap={{ cursor: "grabbing" }} className="container" >
                     <div className='titulo-body'>DESTAQUES DO MÊS</div>
                     <motion.div
@@ -101,6 +103,7 @@ const Body = () => {
                 </motion.div>
 
             </div>
+            <Footer />
         </>
     )
 }

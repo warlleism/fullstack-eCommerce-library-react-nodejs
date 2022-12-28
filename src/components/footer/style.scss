@@ -1,0 +1,40 @@
+.container-footer{
+    width: 100%;
+    display: flex;
+    color: #fff;
+    height: 200px;
+    align-items: center;
+    background-color: #131313;
+    justify-content: space-evenly;
+    font-family: 'Roboto', sans-serif;
+
+    .container-info-footer{
+        height: 100%;
+        display: flex;
+        font-size: 1rem;
+        text-align: center;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        h2{
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        div{
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 300;
+            color: #aaaaaa;
+        }
+    }
+
+    .container-info-footer::after{
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 80%;
+        right: -100px;
+        background-color: rgba(54, 54, 54, 0.192);
+    }
+
+}

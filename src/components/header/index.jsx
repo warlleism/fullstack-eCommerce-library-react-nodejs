@@ -5,6 +5,16 @@ import './style.scss'
 const Header = (props) => {
 
     const [count, setCount] = useState(0)
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header')
+
+        if (window.scrollY >= 150) {
+            header.style.transform = "translateY(-1000px)"
+        } else {
+            header.style.transform = "translateY(0px)"
+
+        }
+    })
 
     const navBar = () => {
         const nav = document.getElementById('nav-bar')
@@ -12,18 +22,18 @@ const Header = (props) => {
 
         if (count == 0) {
             icons.style.opacity = 1
-            nav.style.height = `100vh`
-            nav.style.width = `500px`
             nav.style.top = `0px`
             nav.style.right = `0px`
+            nav.style.width = `400px`
+            nav.style.height = `100vh`
             nav.style.borderRadius = `0px`
             setCount(count + 1)
         } else {
             icons.style.opacity = 0
-            nav.style.height = `43px`
-            nav.style.width = `43px`
             nav.style.top = `45px`
+            nav.style.width = `43px`
             nav.style.right = `30px`
+            nav.style.height = `43px`
             nav.style.borderRadius = `100px`
             setCount(count - 1)
 
@@ -31,13 +41,13 @@ const Header = (props) => {
     }
 
     return (
-        <div className='header-container'>
+        <div className='header-container' id='header'>
             <div className='logo-conteiner'>
                 <div className='logo'>
                     <Link to={'/'}>
                         <div className='line' style={{ background: "#f0ff05" }}></div>
                         <p style={{ marginBottom: -10 }}>Books <strong style={{ color: "#ffff00" }}>&</strong></p>
-                        <p className='down-line'>Sales</p>
+                        <p className='down-line' style={{ fontWeight: 300, color: "#242424" }}>Sales</p>
                         <div className='line'></div>
                     </Link>
                 </div>
@@ -47,21 +57,21 @@ const Header = (props) => {
                 {props.pagina}
             </div>
 
-            <div className='menu-nav-bar' id='nav-bar'>
+            <div className='menu-nav-bar' id='nav-bar' onClick={() => navBar()}>
                 {
                     count != 1
                         ?
-                        <span class="material-symbols-outlined icon-header menu" onClick={() => navBar()}>
+                        <span class="material-symbols-outlined icon-header menu">
                             menu
                         </span>
                         :
-                        <span class="material-symbols-outlined icon-header menu" onClick={() => navBar()}>
+                        <span class="material-symbols-outlined icon-header menu" id='menu' onClick={() => navBar()}>
                             close
                         </span>
                 }
 
                 <div className='container-nav-bar-content'>
-                    <Link to={'/'}>Home</Link>
+                    <Link to={'/'}>Início</Link>
                     <Link to={'/cadastrar'}>Criar publicação</Link>
                     <Link to={'/editar'}>Editar publicação</Link>
                 </div>
@@ -76,8 +86,9 @@ const Header = (props) => {
                     </span>
 
                     <span class="material-symbols-outlined">
-                        notifications
+                        shopping_cart
                     </span>
+
                 </div>
 
             </div>
@@ -93,7 +104,7 @@ const Header = (props) => {
                     :
                     false
             }
-        </div>
+        </div >
     )
 }
 
