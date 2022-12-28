@@ -1,65 +1,23 @@
-.body-container {
+.container-editar {
+    width: 60%;
     display: flex;
-    margin: 300px 0;
-    align-items: center;
-    flex-direction: column;
+    margin: 200px auto;
     justify-content: center;
     font-family: 'Inter', sans-serif;
 
-    .card-promo {
-        gap: 10px;
-        width: 100%;
-        height: 210px;
-        display: flex;
-        margin: 100px 0;
-        justify-content: center;
 
-        img {
-            height: 100%;
-            width: 30%;
-        }
-    }
-
-    .background-line {
-        width: 70%;
-        height: 1px;
-        margin: 100px auto;
-        background: rgba(0, 0, 0, 0.103);
-    }
-
-    .container {
-        gap: 20px;
-        width: 52%;
-        height: 600px;
-        display: flex;
-        margin: 0 auto;
-        overflow: hidden;
-        position: relative;
-        flex-direction: column;
-        justify-content: center;
-
-        .titulo-body {
-            left: 0;
-            top: 0px;
-            width: 100%;
-            font-weight: 700;
-            font-size: 1.3rem;
-            position: absolute;
-            color: #181818;
-        }
-    }
-
-    .container-card {
+    .container-card-editar {
         gap: 20px;
         display: flex;
-        cursor: grab;
+        flex-wrap: wrap;
+        justify-content: center;
 
-        .card {
+        .card-editar {
+            width: 240px;
             color: #fff;
-            height: 490px;
             display: flex;
+            height: 490px;
             margin-top: 20px;
-            min-width: 230px;
             font-size: 1.3rem;
             position: relative;
             border-radius: 5px;
@@ -68,16 +26,25 @@
             background-color: #0C0C0C;
             justify-content: space-between;
 
-            .oferta{
-                top: 0;
-                left: 0;
+            .editar-editar {
+                top: 10px;
+                right: 10px;
                 padding: 4px;
+                cursor: pointer;
                 position: absolute;
+                border-radius: 100px;
                 box-sizing: border-box;
-                background-color: rgb(255, 196, 0);
+                background-color: rgb(228, 228, 228);
+
+                span {
+                    color: black;
+                    font-weight: 900;
+                    font-size: 1.7rem;
+                }
             }
 
-            .botao-saiba-mais {
+            .botao-saiba-mais-editar {
+                opacity: 0;
                 height: 40px;
                 width: 140px;
                 display: flex;
@@ -87,18 +54,19 @@
                 border-radius: 5px;
                 margin-bottom: 20px;
                 align-items: center;
+                pointer-events: none;
                 justify-content: center;
                 background-color: #ffd103;
             }
 
-            .board-line {
+            .board-line-editar {
                 width: 90%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
 
-                .nome-book {
-                    width: 80%;
+                .nome-book-editar {
+                    width: 79%;
                     font-weight: 300;
                     overflow: hidden;
                     font-size: 1.2rem;
@@ -111,17 +79,16 @@
                     -webkit-box-orient: vertical;
                 }
 
-                .line-name {
+                .line-name-editar {
                     width: 16px;
                     height: 3px;
                     background-color: #464646;
                 }
             }
 
-            .preco {
+            .preco-editar {
                 font-size: 1.1rem;
             }
-
 
             img {
                 pointer-events: none;

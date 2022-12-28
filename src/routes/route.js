@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 const Home = React.lazy(() => import('../components/body'))
 const Cadastrar = React.lazy(() => import('../components/cadastrar'))
 const Detalhar = React.lazy(() => import('../components/detalhar'))
+const Editar = React.lazy(() => import('../components/editar'))
 
 export default function Rotas() {
     return (
@@ -23,10 +24,17 @@ export default function Rotas() {
                         </React.Suspense>
                     } />
 
-                <Route path="/editar"
+                <Route path="/detalhar"
                     element={
                         <React.Suspense>
                             <Detalhar />
+                        </React.Suspense>
+                    } />
+
+                <Route path="/editar"
+                    element={
+                        <React.Suspense>
+                            <Editar />
                         </React.Suspense>
                     } />
 

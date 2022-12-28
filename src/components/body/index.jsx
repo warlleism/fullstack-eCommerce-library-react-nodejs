@@ -16,10 +16,10 @@ const Body = () => {
 
     return (
         <>
-            <Header pagina={'INÍCIO'} />
+            <Header pagina={'BEM VINDO'} />
             <div className='body-container'>
                 <motion.div ref={carrousel} whileTap={{ cursor: "grabbing" }} className="container" >
-                    <div className='titulo-body'>NOVOS</div>
+                    <div className='titulo-body'>Novos</div>
                     <motion.div
                         drag="x"
                         dragConstraints={{ right: 0, left: -width }}
@@ -46,7 +46,7 @@ const Body = () => {
                 </motion.div>
                 <div className='background-line'></div>
                 <motion.div ref={carrousel} whileTap={{ cursor: "grabbing" }} className="container" >
-                    <div className='titulo-body'>OFERTAR</div>
+                    <div className='titulo-body'>Ofertas</div>
                     <motion.div
                         drag="x"
                         dragConstraints={{ right: 0, left: -width }}
@@ -64,6 +64,7 @@ const Body = () => {
                                             </div>
                                             <div className='preco'>R$ 49,50</div>
                                             <div className='botao-saiba-mais'>Saiba mais</div>
+                                            <div className='oferta'>50%</div>
                                         </div>
                                     </>
                                 )
@@ -76,7 +77,7 @@ const Body = () => {
                     <img src={require('../../image/promo2.png')} alt="" />
                 </div>
                 <motion.div ref={carrousel} whileTap={{ cursor: "grabbing" }} className="container" >
-                    <div className='titulo-body'>DESTAQUES DO MÊS</div>
+                    <div className='titulo-body'>Destaques Do Mês</div>
                     <motion.div
                         drag="x"
                         dragConstraints={{ right: 0, left: -width }}

@@ -1,6 +1,5 @@
 import Header from '../header/index';
 import React, { useState } from 'react'
-
 import './style.scss'
 
 const Detalhar = () => {
@@ -23,9 +22,7 @@ const Detalhar = () => {
         <>
             <Header pagina={"VISUALIZAR"} arrow={true} />
             <div className='detalhar-container'>
-
                 <div className='container-content'>
-
                     <div className='conteiner-imagem'>
                         <div className='line-detalhar line-1'></div>
                         <div className='line-detalhar line-2'></div>
@@ -33,7 +30,6 @@ const Detalhar = () => {
                         <div className='line-detalhar line-4'></div>
                         <img src={require('../../image/hq.png')} alt="" />
                     </div>
-
                     <div className='content-detalhar'>
                         <div className='titulo-detalhar'>Liga Da Justiça Renascimento</div>
                         <div className='categoria-detalhar'>Categoria: HQ's</div>

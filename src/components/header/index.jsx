@@ -45,8 +45,8 @@ const Header = (props) => {
             <div className='logo-conteiner'>
                 <div className='logo'>
                     <Link to={'/'}>
-                        <div className='line' style={{ background: "#f0ff05" }}></div>
-                        <p style={{ marginBottom: -10 }}>Books <strong style={{ color: "#ffff00" }}>&</strong></p>
+                        <div className='line'></div>
+                        <p style={{ marginBottom: -10 }}>Books <strong>&</strong></p>
                         <p className='down-line' style={{ fontWeight: 300, color: "#242424" }}>Sales</p>
                         <div className='line'></div>
                     </Link>
@@ -69,26 +69,32 @@ const Header = (props) => {
                             close
                         </span>
                 }
-
                 <div className='container-nav-bar-content'>
                     <Link to={'/'}>Início</Link>
                     <Link to={'/cadastrar'}>Criar publicação</Link>
                     <Link to={'/editar'}>Editar publicação</Link>
+                    <Link to={'/editar'}>Visualizar publicação</Link>
                 </div>
 
                 <div className='container-nav-bar-content-icons' id='icons-nav-bar'>
-                    <span class="material-symbols-outlined">
-                        person
-                    </span>
-
-                    <span class="material-symbols-outlined">
-                        home
-                    </span>
-
-                    <span class="material-symbols-outlined">
-                        shopping_cart
-                    </span>
-
+                    <div>
+                        <span class="material-symbols-outlined">
+                            home
+                        </span>
+                        <div>Início</div>
+                    </div>
+                    <div>
+                        <span class="material-symbols-outlined">
+                            person
+                        </span>
+                        <div>Perfil</div>
+                    </div>
+                    <div>
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+                        <div>Carrinho</div>
+                    </div>
                 </div>
 
             </div>

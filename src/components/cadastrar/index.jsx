@@ -14,13 +14,24 @@ const Form = () => {
         descricao: ''
     }])
 
+    const setDefaultValor = () => {
+
+        if (formulario.preco.includes('NaN')) {
+            alert('formato inválido! tente apenas números')
+            document.getElementById('valor').value = '';
+            setFormulario({ ...formulario, preco: undefined })
+        } else {
+            document.getElementById('valor').value = formulario.preco;
+        }
+
+    }
+
     const BRLConvert = new Intl.NumberFormat('BRL', {
         style: 'currency',
         currency: 'BRL',
     });
 
     const filterArray = () => {
-
         if (
             formulario?.nome?.length == undefined ||
             formulario?.preco?.length == undefined ||
@@ -29,28 +40,26 @@ const Form = () => {
             return
         } else {
             setConfirmar(false)
-
         }
-
     }
 
     return (
         <>
+            {console.log(formulario)}
             <Header pagina={"NOVA PUBLICAÇÃO"} arrow={true} />
             <div className='form-container'>
                 {
                     confirmar
-
                         ?
                         <div className='formulario'>
                             <div className='container-nome-preco'>
                                 <div className='campo-input'>
                                     <span>Nome</span>
-                                    <input type="text" onChange={(e) => setFormulario({ nome: e.target.value })} />
+                                    <input type="text" onChange={(e) => setFormulario({ ...formulario, nome: e.target.value })} />
                                 </div>
                                 <div className='campo-input'>
                                     <span>Preço</span>
-                                    <input onChange={(e) => setFormulario({ ...formulario, preco: BRLConvert.format(e.target.value) })} />
+                                    <input id='valor' onBlur={() => setDefaultValor()} onChange={(e) => setFormulario({ ...formulario, preco: BRLConvert.format(e.target.value) })} />
                                 </div>
                             </div>
                             <div className='campo-input'>
@@ -72,7 +81,7 @@ const Form = () => {
                                     <span class="material-symbols-outlined cloud-input-file">
                                         backup
                                     </span>
-                                    <div style={{ color: "#FFA114" }}>Escolha um <strong>arquivo</strong></div>
+                                    <div style={{ color: "black" }}>Escolha um <strong>arquivo</strong></div>
                                 </div>
                             </div>
                             <div className='buttom' onClick={() => filterArray()}>Confirmar</div>
@@ -99,7 +108,7 @@ const Form = () => {
                                 <span>Arquivo</span>
                                 <div>{formulario.arquivo}</div>
                             </div>
-                            <div className='buttom' style={{marginTop: 30}}>Publicar</div>
+                            <div className='buttom' style={{ marginTop: 30 }}>Publicar</div>
                         </div>
                 }
 

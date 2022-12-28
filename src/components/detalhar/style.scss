@@ -1,6 +1,6 @@
 .detalhar-container {
     width: 100%;
-    color: #fff;
+    color: rgb(31, 31, 31);
     height: 100vh;
     display: flex;
     margin-top: 100px;
@@ -26,7 +26,6 @@
             .line-detalhar {
                 position: absolute;
                 background: #141414;
-                filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.63));
             }
 
             .line-1 {
@@ -61,13 +60,11 @@
 
         .titulo-detalhar {
             font-size: 2.5rem;
-
         }
 
         .categoria-detalhar {
-            font-weight: 300;
+            font-weight: 400;
             margin: 10px 0 100px 0;
-
         }
 
         .ler-mais {
@@ -110,6 +107,7 @@
             margin-top: 30px;
             font-weight: 500;
             border-radius: 5px;
+            color: rgb(255, 255, 255);
             text-align: center;
             background-color: #141414;
             box-shadow: 0px 4px 2px #0000002f;
