@@ -1,20 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import './style.scss'
 
 const Header = (props) => {
 
     const [count, setCount] = useState(0)
-    window.addEventListener('scroll', () => {
-        const header = document.getElementById('header')
+    const [scrollDir, setScrollDir] = useState("scrolling down");
 
-        if (window.scrollY >= 150) {
-            header.style.transform = "translateY(-1000px)"
-        } else {
-            header.style.transform = "translateY(0px)"
+    //script para o cabeçalho subir e descer
 
-        }
-    })
+    useEffect(() => {
+        let lastScrollY = window.pageYOffset;
+        const updateScrollDir = () => {
+            const scrollY = window.pageYOffset;
+            setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+            lastScrollY = scrollY > 0 ? scrollY : 0;
+        };
+        const onScroll = () => {
+            window.requestAnimationFrame(updateScrollDir);
+            const header = document.getElementById('header')
+            if (scrollDir == 'scrolling up') {
+                header.style.transform = "translateY(0px)"
+            } else {
+                header.style.transform = "translateY(-1000px)"
+            }
+        };
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
+    }, [scrollDir]);
+
+    //script para menu animado
 
     const navBar = () => {
         const nav = document.getElementById('nav-bar')

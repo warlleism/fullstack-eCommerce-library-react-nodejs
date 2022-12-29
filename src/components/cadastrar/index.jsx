@@ -1,6 +1,7 @@
 import ConvertBase64 from "../hooks/useBase64";
 import React, { useState } from 'react'
 import Header from "../header/index"
+import Swal from 'sweetalert2'
 import './style.scss'
 
 const Form = () => {
@@ -52,11 +53,35 @@ const Form = () => {
         }
     }
 
+    const OptionsRegister = {
+        body: JSON.stringify(formulario),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    const EnviarDados = async () => {
+
+        await fetch('http://localhost:3003/register', OptionsRegister)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status == 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: "Campo de skill não preenchido",
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: "Campo de skill não preenchido",
+                    })
+                }
+            })
+    }
+
     return (
         <>
-            {
-                console.log(formulario)
-            }
             <Header pagina={"NOVA PUBLICAÇÃO"} arrow={true} />
             <div className='form-container'>
                 {
@@ -127,7 +152,7 @@ const Form = () => {
                                 <span>Arquivo</span>
                                 <div>{formulario.arquivo}</div>
                             </div>
-                            <div className='buttom' style={{ marginTop: 30 }}>Publicar</div>
+                            <div className='buttom' style={{ marginTop: 30 }} onClick={() => EnviarDados()}>Publicar</div>
                         </div>
                 }
 

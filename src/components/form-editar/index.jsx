@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from "../header/index"
+import Swal from 'sweetalert2'
 import './style.scss'
 
 const FormCadastrar = () => {
@@ -45,7 +46,6 @@ const FormCadastrar = () => {
     }
 
     useEffect(() => {
-
         const localData = JSON.parse(localStorage.getItem('itens'))
         setFormulario(
             {
@@ -58,9 +58,36 @@ const FormCadastrar = () => {
         )
     }, [])
 
+    const OptionsRegister = {
+        body: JSON.stringify(formulario),
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    const EnviarDados = async () => {
+
+        await fetch('http://localhost:3003/register', OptionsRegister)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status == 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: "Campo de skill não preenchido",
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: "Campo de skill não preenchido",
+                    })
+                }
+            })
+    }
+
+
     return (
         <>
-            {console.log(formulario)}
             <Header pagina={"EDITAR PUBLICAÇÃO"} arrow={true} />
             <div className='form-container'>
                 {
@@ -131,7 +158,7 @@ const FormCadastrar = () => {
                                 <span>Arquivo</span>
                                 <div>{formulario.arquivo}</div>
                             </div>
-                            <div className='buttom' style={{ marginTop: 30 }}>Atualizar</div>
+                            <div className='buttom' style={{ marginTop: 30 }} onClick={() => EnviarDados()}>Atualizar</div>
                         </div>
                 }
 
