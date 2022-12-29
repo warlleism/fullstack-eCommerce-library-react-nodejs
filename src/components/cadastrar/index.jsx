@@ -1,3 +1,4 @@
+import ConvertBase64 from "../hooks/useBase64";
 import React, { useState } from 'react'
 import Header from "../header/index"
 import './style.scss'
@@ -6,20 +7,28 @@ const Form = () => {
 
     const [confirmar, setConfirmar] = useState(true)
 
-    const [formulario, setFormulario] = useState([{
+    const uploadImage = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await ConvertBase64(file);
+        setFormulario({ ...formulario, arquivo: base64 })
+    }
+
+    const formDefault = {
         nome: '',
         preco: '',
         arquivo: '',
         categoria: '',
         descricao: ''
-    }])
+    }
+
+    const [formulario, setFormulario] = useState(formDefault)
 
     const setDefaultValor = () => {
 
         if (formulario.preco.includes('NaN')) {
             alert('formato inválido! tente apenas números')
             document.getElementById('valor').value = '';
-            setFormulario({ ...formulario, preco: undefined })
+            setFormulario({ ...formulario, preco: '' })
         } else {
             document.getElementById('valor').value = formulario.preco;
         }
@@ -33,10 +42,10 @@ const Form = () => {
 
     const filterArray = () => {
         if (
-            formulario?.nome?.length == undefined ||
-            formulario?.preco?.length == undefined ||
-            formulario?.categoria?.length == undefined ||
-            formulario?.arquivo?.length == undefined) {
+            formulario?.nome?.length == '' ||
+            formulario?.preco?.length == '' ||
+            formulario?.categoria?.length == '' ||
+            formulario?.arquivo?.length == '') {
             return
         } else {
             setConfirmar(false)
@@ -45,7 +54,9 @@ const Form = () => {
 
     return (
         <>
-            {console.log(formulario)}
+            {
+                console.log(formulario)
+            }
             <Header pagina={"NOVA PUBLICAÇÃO"} arrow={true} />
             <div className='form-container'>
                 {
@@ -76,12 +87,20 @@ const Form = () => {
                                 <textarea onChange={(e) => setFormulario({ ...formulario, descricao: e.target.value })}></textarea>
                             </div>
                             <div className='campo-input'>
-                                <input type="file" className='file-input' onChange={(e) => setFormulario({ ...formulario, arquivo: e.target.value })} />
-                                <div className='container-input-file'>
-                                    <span class="material-symbols-outlined cloud-input-file">
-                                        backup
-                                    </span>
-                                    <div style={{ color: "black" }}>Escolha um <strong>arquivo</strong></div>
+                                <input type="file" className='file-input' onChange={(e) => { uploadImage(e) }} />
+                                <div className='container-input-file' style={{ background: formulario.arquivo != '' ? '#161616' : false }}>
+                                    {
+                                        formulario.arquivo == ''
+                                            ?
+                                            <span class="material-symbols-outlined cloud-input-file" style={{ color: formulario.arquivo != '' ? '#fff' : false }}>
+                                                backup
+                                            </span>
+                                            :
+                                            <span class="material-symbols-outlined cloud-input-file" style={{ color: formulario.arquivo != '' ? '#fff' : false }}>
+                                                cloud_done
+                                            </span>
+                                    }
+                                    <div style={{ color: formulario.arquivo != '' ? '#fff' : '#161616' }}> {formulario.arquivo == '' ? <>Escolha um <strong>arquivo</strong></> : <>Arquivo Selecionado.</>} </div>
                                 </div>
                             </div>
                             <div className='buttom' onClick={() => filterArray()}>Confirmar</div>

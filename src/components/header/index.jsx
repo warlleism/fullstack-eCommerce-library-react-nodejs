@@ -30,7 +30,7 @@ const Header = (props) => {
             setCount(count + 1)
         } else {
             icons.style.opacity = 0
-            nav.style.top = `45px`
+            nav.style.top = `85px`
             nav.style.width = `43px`
             nav.style.right = `30px`
             nav.style.height = `43px`
@@ -40,6 +40,9 @@ const Header = (props) => {
     }
     return (
         <div className='header-container' id='header'>
+            <div className='header-top-desconto-info'>
+                Produtos com até <strong>70%</strong> de desconto
+            </div>
             <div className='logo-conteiner'>
                 <div className='logo'>
                     <Link to={'/'}>
@@ -63,7 +66,7 @@ const Header = (props) => {
                             menu
                         </span>
                         :
-                        <span class="material-symbols-outlined icon-header menu" id='menu' onClick={() => navBar()}>
+                        <span class="material-symbols-outlined icon-header menu close" id='menu' onClick={() => navBar()}>
                             close
                         </span>
                 }
@@ -100,11 +103,11 @@ const Header = (props) => {
             {
                 props.arrow
                     ?
-                    <Link to={"/"} className='arrow-back' style={{ color: "black" }} >
+                    <div className='arrow-back' style={{ color: "black" }} onClick={() => window.history.back()}>
                         <span class="material-symbols-outlined">
                             arrow_back_ios
                         </span>
-                    </Link>
+                    </div>
                     :
                     false
             }

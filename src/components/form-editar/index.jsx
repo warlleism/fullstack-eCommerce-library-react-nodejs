@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from "../header/index"
 import './style.scss'
 
@@ -6,24 +6,25 @@ const FormCadastrar = () => {
 
     const [confirmar, setConfirmar] = useState(true)
 
-    const [formulario, setFormulario] = useState([{
+    const formDefault = {
         nome: '',
         preco: '',
         arquivo: '',
         categoria: '',
         descricao: ''
-    }])
+    }
+
+    const [formulario, setFormulario] = useState(formDefault)
 
     const setDefaultValor = () => {
 
         if (formulario.preco.includes('NaN')) {
             alert('formato inválido! tente apenas números')
             document.getElementById('valor').value = '';
-            setFormulario({ ...formulario, preco: undefined })
+            setFormulario({ ...formulario, preco: '' })
         } else {
             document.getElementById('valor').value = formulario.preco;
         }
-
     }
 
     const BRLConvert = new Intl.NumberFormat('BRL', {
@@ -33,18 +34,33 @@ const FormCadastrar = () => {
 
     const filterArray = () => {
         if (
-            formulario?.nome?.length == undefined ||
-            formulario?.preco?.length == undefined ||
-            formulario?.categoria?.length == undefined ||
-            formulario?.arquivo?.length == undefined) {
+            formulario?.nome?.length == '' ||
+            formulario?.preco?.length == '' ||
+            formulario?.categoria?.length == '' ||
+            formulario?.arquivo?.length == '') {
             return
         } else {
             setConfirmar(false)
         }
     }
 
+    useEffect(() => {
+
+        const localData = JSON.parse(localStorage.getItem('itens'))
+        setFormulario(
+            {
+                nome: localData[0].nome,
+                preco: localData[0].preco,
+                categoria: localData[0].categoria,
+                descricao: localData[0].descricao,
+                arquivo: localData[0].arquivo
+            }
+        )
+    }, [])
+
     return (
         <>
+            {console.log(formulario)}
             <Header pagina={"EDITAR PUBLICAÇÃO"} arrow={true} />
             <div className='form-container'>
                 {
@@ -54,16 +70,16 @@ const FormCadastrar = () => {
                             <div className='container-nome-preco'>
                                 <div className='campo-input'>
                                     <span>Nome</span>
-                                    <input type="text" onChange={(e) => setFormulario({ ...formulario, nome: e.target.value })} />
+                                    <input type="text" value={formulario?.nome} onChange={(e) => setFormulario({ ...formulario, nome: e.target.value })} />
                                 </div>
                                 <div className='campo-input'>
                                     <span>Preço</span>
-                                    <input id='valor' onBlur={() => setDefaultValor()} onChange={(e) => setFormulario({ ...formulario, preco: BRLConvert.format(e.target.value) })} />
+                                    <input id='valor' value={formulario?.preco} onBlur={() => setDefaultValor()} onChange={(e) => setFormulario({ ...formulario, preco: BRLConvert.format(e.target.value) })} />
                                 </div>
                             </div>
                             <div className='campo-input'>
                                 <span>Categoria</span>
-                                <select name="" id="" onChange={(e) => setFormulario({ ...formulario, categoria: e.target.value })}>
+                                <select name="" id="" value={formulario?.categoria} onChange={(e) => setFormulario({ ...formulario, categoria: e.target.value })}>
                                     <option value="">selecione...</option>
                                     <option value="HQ">HQ</option>
                                     <option value="LIVRO">LIVRO</option>
@@ -72,15 +88,23 @@ const FormCadastrar = () => {
                             </div>
                             <div className='campo-input'>
                                 <span>Descrição</span>
-                                <textarea onChange={(e) => setFormulario({ ...formulario, descricao: e.target.value })}></textarea>
+                                <textarea value={formulario?.descricao} onChange={(e) => setFormulario({ ...formulario, descricao: e.target.value })}></textarea>
                             </div>
                             <div className='campo-input'>
                                 <input type="file" className='file-input' onChange={(e) => setFormulario({ ...formulario, arquivo: e.target.value })} />
-                                <div className='container-input-file'>
-                                    <span class="material-symbols-outlined cloud-input-file">
-                                        backup
-                                    </span>
-                                    <div style={{ color: "black" }}>Escolha um <strong>arquivo</strong></div>
+                                <div className='container-input-file' style={{ background: formulario.arquivo != '' ? '#161616' : false }}>
+                                    {
+                                        formulario.arquivo == ''
+                                            ?
+                                            <span class="material-symbols-outlined cloud-input-file" style={{ color: formulario.arquivo != '' ? '#fff' : false }}>
+                                                backup
+                                            </span>
+                                            :
+                                            <span class="material-symbols-outlined cloud-input-file" style={{ color: formulario.arquivo != '' ? '#fff' : false }}>
+                                                cloud_done
+                                            </span>
+                                    }
+                                    <div style={{ color: formulario.arquivo != '' ? '#fff' : '#161616' }}> {formulario.arquivo == '' ? <>Escolha um <strong>arquivo</strong></> : <>Arquivo Selecionado.</>} </div>
                                 </div>
                             </div>
                             <div className='buttom' onClick={() => filterArray()}>Confirmar</div>

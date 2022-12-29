@@ -11,6 +11,7 @@ const Body = () => {
     const dados = [1, 2, 3, 4, 5, 6]
     const [width, setWidth] = useState(0)
     const [setValue] = useLocalStorage('itens', [{ nome: 'harry potter', preco: '60,90' }])
+    
 
     useEffect(() => {
         setWidth(carrousel.current?.scrollWidth - carrousel.current?.offsetWidth)
@@ -18,7 +19,7 @@ const Body = () => {
 
     return (
         <>
-            <Header />
+            <Header/>
             <div className='body-container'>
                 <img className='promo-top-1' src={require('../../image/promo3.png')} alt="" />
                 <motion.div ref={carrousel} whileTap={{ cursor: "grabbing" }} className="container" >
