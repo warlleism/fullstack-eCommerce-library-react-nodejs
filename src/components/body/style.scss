@@ -1,10 +1,17 @@
 .body-container {
     display: flex;
-    margin: 300px 0;
+    margin: 120px 0;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     font-family: 'Inter', sans-serif;
+
+    .promo-top-1{
+        width: 60%;
+        height: 280px;
+        border-radius: 5px;
+        margin-bottom: 100px;
+    }
 
     .card-promo {
         gap: 10px;

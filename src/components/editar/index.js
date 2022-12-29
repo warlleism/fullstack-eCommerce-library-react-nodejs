@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.scss'
 import Header from "../header"
+import { Link } from 'react-router-dom'
 
 const Editar = () => {
     const dados = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -22,10 +23,11 @@ const Editar = () => {
                                         </div>
                                         <div className='preco-editar'>R$ 49,50</div>
                                         <div className='botao-saiba-mais-editar'>Saiba mais</div>
-                                        <div className='editar-editar'>
+                                        <Link to={'/formEditar'} className='editar-editar'>
                                             <span class="material-symbols-outlined">
                                                 edit
-                                            </span></div>
+                                            </span>
+                                        </Link>
                                     </div>
                                 </>
                             )

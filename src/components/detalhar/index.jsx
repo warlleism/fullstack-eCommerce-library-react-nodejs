@@ -1,10 +1,12 @@
 import Header from '../header/index';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.scss'
 
 const Detalhar = () => {
 
     const [count, setCont] = useState(0)
+
+    const localData = JSON.parse(localStorage.getItem('itens'))
 
     const moreLine = () => {
         const texto = document.getElementById('texto')
@@ -18,6 +20,7 @@ const Detalhar = () => {
             setCont(count - 1)
         }
     }
+
     return (
         <>
             <Header pagina={"VISUALIZAR"} arrow={true} />

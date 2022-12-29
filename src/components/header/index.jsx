@@ -36,10 +36,8 @@ const Header = (props) => {
             nav.style.height = `43px`
             nav.style.borderRadius = `100px`
             setCount(count - 1)
-
         }
     }
-
     return (
         <div className='header-container' id='header'>
             <div className='logo-conteiner'>
@@ -73,7 +71,7 @@ const Header = (props) => {
                     <Link to={'/'}>Início</Link>
                     <Link to={'/cadastrar'}>Criar publicação</Link>
                     <Link to={'/editar'}>Editar publicação</Link>
-                    <Link to={'/editar'}>Visualizar publicação</Link>
+                    <Link to={'/detalhar'}>Visualizar publicação</Link>
                 </div>
 
                 <div className='container-nav-bar-content-icons' id='icons-nav-bar'>

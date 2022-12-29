@@ -4,6 +4,7 @@ const Home = React.lazy(() => import('../components/body'))
 const Cadastrar = React.lazy(() => import('../components/cadastrar'))
 const Detalhar = React.lazy(() => import('../components/detalhar'))
 const Editar = React.lazy(() => import('../components/editar'))
+const FormCadastrar = React.lazy(() => import('../components/form-cadastrar'))
 
 export default function Rotas() {
     return (
@@ -35,6 +36,13 @@ export default function Rotas() {
                     element={
                         <React.Suspense>
                             <Editar />
+                        </React.Suspense>
+                    } />
+
+                <Route path="/formEditar"
+                    element={
+                        <React.Suspense>
+                            <FormCadastrar />
                         </React.Suspense>
                     } />
 
