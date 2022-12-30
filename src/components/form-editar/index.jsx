@@ -12,7 +12,8 @@ const FormCadastrar = () => {
         preco: '',
         arquivo: '',
         categoria: '',
-        descricao: ''
+        descricao: '',
+        tipo: ''
     }
 
     const [formulario, setFormulario] = useState(formDefault)
@@ -111,6 +112,15 @@ const FormCadastrar = () => {
                                     <option value="HQ">HQ</option>
                                     <option value="LIVRO">LIVRO</option>
                                     <option value="MANGÁ">MANGÁ</option>
+                                </select>
+                            </div>
+                            <div className='campo-input'>
+                                <span>Tipo</span>
+                                <select name="" id="" onChange={(e) => setFormulario({ ...formulario, tipo: e.target.value })}>
+                                    <option value="">selecione...</option>
+                                    <option value="1">Novo</option>
+                                    <option value="2">Oferta</option>
+                                    <option value="3">Destaque do Mês</option>
                                 </select>
                             </div>
                             <div className='campo-input'>

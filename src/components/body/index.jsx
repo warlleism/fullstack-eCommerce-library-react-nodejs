@@ -7,19 +7,26 @@ import useLocalStorage from './../hooks/useLocalStorage';
 
 const Body = () => {
 
+    const [data, setData] = useState([{}])
     const carrousel = useRef();
     const dados = [1, 2, 3, 4, 5, 6]
     const [width, setWidth] = useState(0)
     const [setValue] = useLocalStorage('itens', [{ nome: 'harry potter', preco: '60,90' }])
-    
+
+    const getData = () => {
+        fetch('http://localhost:3003/readAll')
+            .then((res) => res.json())
+            .then((data) => setData(data))
+    }
 
     useEffect(() => {
+        getData()
         setWidth(carrousel.current?.scrollWidth - carrousel.current?.offsetWidth)
     }, [])
 
     return (
         <>
-            <Header/>
+            <Header />
             <div className='body-container'>
                 <img className='promo-top-1' src={require('../../image/promo3.png')} alt="" />
                 <motion.div ref={carrousel} whileTap={{ cursor: "grabbing" }} className="container" >
@@ -29,18 +36,18 @@ const Body = () => {
                         dragConstraints={{ right: 0, left: -width }}
                         className='container-card'>
                         {
-                            dados.map(_ => {
+                            data?.map(e => {
                                 return (
                                     <>
                                         <div className='card'>
-                                            <img src={require('../../image/hq.png')} alt="" />
+                                            <img src={e?.imagem} alt="" />
                                             <div className='board-line'>
                                                 <div className='line-left line-name'></div>
-                                                <div className='nome-book'>Liga da Justiça: renascimento</div>
+                                                <div className='nome-book'>{e?.nome}</div>
                                                 <div className='line-rigth line-name'></div>
                                             </div>
-                                            <div className='preco'>R$ 49,50</div>
-                                            <div className='botao-saiba-mais' onClick={() => { setValue([{ nome: 'La casa de papel', preco: '32,90' }]) }}>Saiba mais</div>
+                                            <div className='preco'>{e?.preco}</div>
+                                            <div className='botao-saiba-mais' onClick={() => { setValue([{ e }]) }}>Saiba mais</div>
                                         </div>
                                     </>
                                 )
