@@ -6,7 +6,7 @@ const Detalhar = () => {
 
     const [count, setCont] = useState(0)
 
-    const localData = JSON.parse(localStorage.getItem('itens'))
+    const [localData] = useState(JSON.parse(localStorage.getItem('itens')))
 
     const moreLine = () => {
         const texto = document.getElementById('texto')
@@ -31,12 +31,12 @@ const Detalhar = () => {
                         <div className='line-detalhar line-2'></div>
                         <div className='line-detalhar line-3'></div>
                         <div className='line-detalhar line-4'></div>
-                        <img src={require('../../image/hq.png')} alt="" />
+                        <img src={localData?.imagem} alt="" />
                     </div>
                     <div className='content-detalhar'>
-                        <div className='titulo-detalhar'>Liga Da Justiça Renascimento</div>
-                        <div className='categoria-detalhar'>Categoria: HQ's</div>
-                        <div className='texto-detalhar' id='texto'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+                        <div className='titulo-detalhar'>{localData?.nome}</div>
+                        <div className='categoria-detalhar'>Categoria: {localData?.categoria}</div>
+                        <div className='texto-detalhar' id='texto'>{localData?.descricao}</div>
                         <div className='ler-mais' onClick={() => moreLine()}>{count != 0 ? "...menos" : "mais..."}</div>
                         <div className='button-detalhar'>Carrinho</div>
                     </div>

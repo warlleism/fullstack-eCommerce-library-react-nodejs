@@ -4,23 +4,20 @@ import Footer from '../footer'
 import { motion } from "framer-motion"
 import React, { useEffect, useRef, useState } from 'react'
 import useLocalStorage from './../hooks/useLocalStorage';
+import useGetData from './../hooks/useGetData';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
 
-    const [data, setData] = useState([{}])
     const carrousel = useRef();
     const dados = [1, 2, 3, 4, 5, 6]
     const [width, setWidth] = useState(0)
-    const [setValue] = useLocalStorage('itens', [{ nome: 'harry potter', preco: '60,90' }])
-
-    const getData = () => {
-        fetch('http://localhost:3003/readAll')
-            .then((res) => res.json())
-            .then((data) => setData(data))
-    }
+    const [setValue] = useLocalStorage('itens', '')
+    const [Novos] = useGetData(1)
+    const [Ofertas] = useGetData(2)
+    const [Destaques] = useGetData(3)
 
     useEffect(() => {
-        getData()
         setWidth(carrousel.current?.scrollWidth - carrousel.current?.offsetWidth)
     }, [])
 
@@ -36,7 +33,7 @@ const Body = () => {
                         dragConstraints={{ right: 0, left: -width }}
                         className='container-card'>
                         {
-                            data?.map(e => {
+                            Novos?.map(e => {
                                 return (
                                     <>
                                         <div className='card'>
@@ -47,7 +44,7 @@ const Body = () => {
                                                 <div className='line-rigth line-name'></div>
                                             </div>
                                             <div className='preco'>{e?.preco}</div>
-                                            <div className='botao-saiba-mais' onClick={() => { setValue([{ e }]) }}>Saiba mais</div>
+                                            <Link to={'/detalhar'} className='botao-saiba-mais' onClick={() => { setValue(e) }}>Saiba mais</Link>
                                         </div>
                                     </>
                                 )
@@ -63,19 +60,18 @@ const Body = () => {
                         dragConstraints={{ right: 0, left: -width }}
                         className='container-card'>
                         {
-                            dados.map(_ => {
+                            Ofertas?.map(e => {
                                 return (
                                     <>
                                         <div className='card'>
-                                            <img src={require('../../image/hq.png')} alt="" />
+                                            <img src={e?.imagem} alt="" />
                                             <div className='board-line'>
                                                 <div className='line-left line-name'></div>
-                                                <div className='nome-book'>Liga da Justiça: renascimento</div>
+                                                <div className='nome-book'>{e?.nome}</div>
                                                 <div className='line-rigth line-name'></div>
                                             </div>
-                                            <div className='preco'>R$ 49,50</div>
-                                            <div className='botao-saiba-mais'>Saiba mais</div>
-                                            <div className='oferta'>50%</div>
+                                            <div className='preco'>{e?.preco}</div>
+                                            <Link to={'/detalhar'} className='botao-saiba-mais' onClick={() => { setValue(e) }}>Saiba mais</Link>
                                         </div>
                                     </>
                                 )
@@ -94,18 +90,18 @@ const Body = () => {
                         dragConstraints={{ right: 0, left: -width }}
                         className='container-card'>
                         {
-                            dados.map(_ => {
+                            Destaques?.map(e => {
                                 return (
                                     <>
                                         <div className='card'>
-                                            <img src={require('../../image/hq.png')} alt="" />
+                                            <img src={e?.imagem} alt="" />
                                             <div className='board-line'>
                                                 <div className='line-left line-name'></div>
-                                                <div className='nome-book'>Liga da Justiça: renascimento</div>
+                                                <div className='nome-book'>{e?.nome}</div>
                                                 <div className='line-rigth line-name'></div>
                                             </div>
-                                            <div className='preco'>R$ 49,50</div>
-                                            <div className='botao-saiba-mais'>Saiba mais</div>
+                                            <div className='preco'>{e?.preco}</div>
+                                            <Link to={'/detalhar'} className='botao-saiba-mais' onClick={() => { setValue(e) }}>Saiba mais</Link>
                                         </div>
                                     </>
                                 )

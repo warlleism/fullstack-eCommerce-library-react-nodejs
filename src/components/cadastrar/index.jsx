@@ -24,22 +24,20 @@ const Form = () => {
     const [formulario, setFormulario] = useState(formDefault)
 
     const setDefaultValor = () => {
-
         if (formulario.preco.includes('NaN')) {
-            alert('formato inválido! tente apenas números')
+            alert(`formato inválido! tente apenas números e  ' . '  ao invés  de  ' , ' `)
             document.getElementById('valor').value = '';
             setFormulario({ ...formulario, preco: '' })
         } else {
             document.getElementById('valor').value = formulario.preco;
         }
-
     }
 
-    const BRLConvert = new Intl.NumberFormat('BRL', {
+    const BRLConvert = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',
+        minimumFractionDigits: 2
     });
-
 
     const OptionsRegister = {
         body: JSON.stringify(formulario),
@@ -50,22 +48,36 @@ const Form = () => {
     };
 
     const EnviarDados = async () => {
-
-        await fetch('http://localhost:3003/register', OptionsRegister)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status == 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: "Campo de skill não preenchido",
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: "Campo de skill não preenchido",
-                    })
-                }
+        if (
+            formulario?.nome == '' ||
+            formulario?.preco == '' ||
+            formulario?.categoria == '' ||
+            formulario?.descricao == '' ||
+            formulario?.arquivo == '' ||
+            formulario?.tipo == '') {
+            return Swal.fire({
+                icon: 'warning',
+                title: "Campo de skill não preenchido",
             })
+        } else {
+
+            await fetch('http://localhost:3003/register', OptionsRegister)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status == 200) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: "Campo de skill não preenchido",
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: "Campo de não preenchido",
+                        })
+                    }
+                })
+        }
+
     }
 
     return (
@@ -80,7 +92,7 @@ const Form = () => {
                         </div>
                         <div className='campo-input'>
                             <span>Preço</span>
-                            <input id='valor' onBlur={() => setDefaultValor()} onChange={(e) => setFormulario({ ...formulario, preco: BRLConvert.format(e.target.value) })} />
+                            <input id='valor' onBlur={() => setDefaultValor()} onFocus={() => document.getElementById('valor').value = ''} onChange={(e) => setFormulario({ ...formulario, preco: BRLConvert.format(e.target.value) })} />
                         </div>
                     </div>
                     <div className='campo-input'>

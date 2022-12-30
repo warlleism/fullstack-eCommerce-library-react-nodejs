@@ -1,48 +1,54 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.scss'
 import Header from "../header"
 import { Link } from 'react-router-dom'
 import useLocalStorage from '../hooks/useLocalStorage'
 
 const Editar = () => {
-    const dados = [1, 2, 3, 4, 5, 6, 7, 8]
 
-    const [formulario, setFormulario] = useState([{
-        nome: '',
-        preco: '',
-        arquivo: '',
-        categoria: '',
-        descricao: ''
-    }])
+    const [data, setData] = useState([])
 
     const [setValue] = useLocalStorage('itens', [{}])
 
+    const getAllData = () => {
+        fetch('http://localhost:3003/readAll')
+            .then((res) => res.json())
+            .then((data) => setData(data))
+    }
+
+    useEffect(() => {
+        getAllData()
+    }, [])
+
     return (
         <>
+            {console.log(data)}
             <Header pagina={"EDITAR"} arrow={true} />
             <div className='container-editar'>
                 <div className='container-card-editar'>
                     {
-                        dados.map(_ => {
+                        data?.map(e => {
                             return (
                                 <>
                                     <div className='card-editar'>
-                                        <img src={require('../../image/hq.png')} alt="" />
+                                        <img src={e?.imagem} alt="" />
                                         <div className='board-line-editar'>
                                             <div className='line-left line-name-editar'></div>
-                                            <div className='nome-book-editar'>Liga da Justiça: renascimento</div>
+                                            <div className='nome-book-editar'>{e?.nome}</div>
                                             <div className='line-rigth line-name-editar'></div>
                                         </div>
-                                        <div className='preco-editar'>R$ 49,50</div>
+                                        <div className='preco-editar'>{e?.preco}</div>
                                         <div className='botao-saiba-mais-editar'>Saiba mais</div>
                                         <Link to={'/formEditar'} className='editar-editar' onClick={() => {
                                             setValue([
                                                 {
-                                                    nome: 'as 6 lições',
-                                                    preco: '32,90',
-                                                    categoria: 'HQ',
-                                                    descricao: 'texto de descricao',
-                                                    arquivo: 'imagem.png',
+                                                    id: e?.id,
+                                                    nome: e?.nome,
+                                                    preco: e?.preco,
+                                                    categoria: e?.categoria,
+                                                    descricao: e?.descricao,
+                                                    tipo: e?.tipo,
+                                                    arquivo: e?.imagem,
                                                 }
                                             ])
                                         }}>
