@@ -46,7 +46,7 @@
                     width: 100%;
                     height: 40px;
                     color: black;
-                    background-color:#f2f2f2;
+                    background-color: #f2f2f2;
 
                 }
             }
@@ -58,7 +58,7 @@
             outline: none;
             font-size: 1rem;
             padding: 15px 0;
-            background-color:#f2f2f2;
+            background-color: #f2f2f2;
         }
 
         .campo-input {
@@ -85,7 +85,7 @@
                 padding: 0px 10px;
                 position: absolute;
                 text-align: center;
-                background-color:#f2f2f2;
+                background-color: #f2f2f2;
             }
 
             textarea {
@@ -96,7 +96,7 @@
                 height: 170px;
                 font-size: 1.2rem;
                 box-sizing: border-box;
-                background-color:#f2f2f2;
+                background-color: #f2f2f2;
 
             }
 
@@ -138,6 +138,30 @@
             text-align: center;
             border-radius: 5px;
             background-color: #161616;
+        }
+    }
+}
+
+
+@media screen and (max-width: 742px) {
+    .form-container {
+        padding: 0;
+        width: 100%;
+
+        .formulario {
+            width: 97% !important;
+
+            .container-nome-preco {
+                flex-direction: column;
+
+                .campo-input {
+                    width: 100%;
+                }
+            }
+        }
+
+        .buttom {
+            width: 100% !important;
         }
     }
 }

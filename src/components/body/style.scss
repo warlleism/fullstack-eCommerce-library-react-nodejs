@@ -182,6 +182,12 @@
 
         .container {
             width: 90%;
+
+            .container-card {
+                .card {
+                    margin-right: 10px;
+                }
+            }
         }
     }
 }
