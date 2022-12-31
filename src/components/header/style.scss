@@ -243,9 +243,14 @@
     }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 508px) {
 
     .header-container {
+
+        .header-top-desconto-info {
+            font-size: .8rem;
+            letter-spacing: 3px;
+        }
 
         .menu-nav-bar {
             display: none;
@@ -279,13 +284,13 @@
             background-color: #f2f2f2;
             justify-content: space-between;
 
-            .icon-close-menu{
+            .icon-close-menu {
                 top: 20px;
                 right: 20px;
                 font-size: 2rem;
                 font-weight: 700;
                 position: absolute;
-              
+
             }
 
             .container-nav-bar-content-mobile {

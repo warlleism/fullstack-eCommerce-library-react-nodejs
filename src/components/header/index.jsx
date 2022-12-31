@@ -90,7 +90,6 @@ const Header = (props) => {
                     <Link to={'/'}>Início</Link>
                     <Link to={'/cadastrar'}>Criar publicação</Link>
                     <Link to={'/editar'}>Editar publicação</Link>
-                    <Link to={'/detalhar'}>Visualizar publicação</Link>
                 </div>
 
                 <div className='container-nav-bar-content-icons' id='icons-nav-bar'>
@@ -137,9 +136,9 @@ const Header = (props) => {
                 mobileMenu
                     ?
 
-                    <div className='mobile-nav-bar-container' id='mobile-menu'>
+                    <div className='mobile-nav-bar-container' id='mobile-menu' onClick={() => setMobileMenu(!mobileMenu)}>
 
-                        <span class="material-symbols-outlined icon-close-menu"  onClick={() => setMobileMenu(!mobileMenu)}>
+                        <span class="material-symbols-outlined icon-close-menu">
                             close
                         </span>
 
@@ -147,7 +146,6 @@ const Header = (props) => {
                             <Link to={'/'}>Início</Link>
                             <Link to={'/cadastrar'}>Criar publicação</Link>
                             <Link to={'/editar'}>Editar publicação</Link>
-                            <Link to={'/detalhar'}>Visualizar publicação</Link>
                         </div>
 
                         <div className='container-nav-bar-content-icons-mobile' id='icons-nav-bar'>
