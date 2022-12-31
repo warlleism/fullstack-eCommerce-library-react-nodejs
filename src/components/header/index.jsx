@@ -5,6 +5,7 @@ import './style.scss'
 const Header = (props) => {
 
     const [count, setCount] = useState(0)
+    const [mobileMenu, setMobileMenu] = useState(false)
     const [scrollDir, setScrollDir] = useState("scrolling down");
 
     //script para o cabeçalho subir e descer
@@ -112,7 +113,6 @@ const Header = (props) => {
                         <div>Carrinho</div>
                     </div>
                 </div>
-
             </div>
 
             {
@@ -122,6 +122,54 @@ const Header = (props) => {
                         <span class="material-symbols-outlined">
                             arrow_back_ios
                         </span>
+                    </div>
+                    :
+                    false
+            }
+
+            <div className='mobile-menu-container' onClick={() => setMobileMenu(!mobileMenu)}>
+                <span class="material-symbols-outlined icon-header menu">
+                    menu
+                </span>
+            </div>
+
+            {
+                mobileMenu
+                    ?
+
+                    <div className='mobile-nav-bar-container' id='mobile-menu'>
+
+                        <span class="material-symbols-outlined icon-close-menu"  onClick={() => setMobileMenu(!mobileMenu)}>
+                            close
+                        </span>
+
+                        <div className='container-nav-bar-content-mobile'>
+                            <Link to={'/'}>Início</Link>
+                            <Link to={'/cadastrar'}>Criar publicação</Link>
+                            <Link to={'/editar'}>Editar publicação</Link>
+                            <Link to={'/detalhar'}>Visualizar publicação</Link>
+                        </div>
+
+                        <div className='container-nav-bar-content-icons-mobile' id='icons-nav-bar'>
+                            <div className='container-icons-mobile'>
+                                <span class="material-symbols-outlined">
+                                    home
+                                </span>
+                                <div>Início</div>
+                            </div>
+                            <div className='container-icons-mobile'>
+                                <span class="material-symbols-outlined">
+                                    person
+                                </span>
+                                <div>Perfil</div>
+                            </div>
+                            <div className='container-icons-mobile'>
+                                <span class="material-symbols-outlined">
+                                    shopping_cart
+                                </span>
+                                <div>Carrinho</div>
+                            </div>
+                        </div>
                     </div>
                     :
                     false

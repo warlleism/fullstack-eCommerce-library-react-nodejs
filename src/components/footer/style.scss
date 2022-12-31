@@ -1,4 +1,4 @@
-.container-footer{
+.container-footer {
     width: 100%;
     display: flex;
     color: #fff;
@@ -8,7 +8,7 @@
     justify-content: space-evenly;
     font-family: 'Roboto', sans-serif;
 
-    .container-info-footer{
+    .container-info-footer {
         height: 100%;
         display: flex;
         font-size: 1rem;
@@ -16,11 +16,13 @@
         position: relative;
         flex-direction: column;
         justify-content: center;
-        h2{
+
+        h2 {
             font-weight: 500;
             font-size: 1.2rem;
         }
-        div{
+
+        div {
             cursor: pointer;
             margin-top: 10px;
             font-weight: 300;
@@ -28,7 +30,7 @@
         }
     }
 
-    .container-info-footer::after{
+    .container-info-footer::after {
         content: '';
         position: absolute;
         width: 2px;
@@ -38,3 +40,25 @@
     }
 
 }
+
+@media screen and (max-width: 926px) {
+    .container-footer {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        .container-info-footer {
+            font-size: .8rem;
+
+            h2 {
+                font-size: .8rem;
+            }
+        }
+
+        .container-info-footer::after {
+            display: none;
+        }
+    }
+
+}
+

@@ -67,7 +67,7 @@ const Form = () => {
                     if (data.status == 200) {
                         Swal.fire({
                             icon: 'success',
-                            title: "Campo de skill não preenchido",
+                            title: `${formulario.categoria} cadastrado com sucesso`,
                         })
                     } else {
                         Swal.fire({

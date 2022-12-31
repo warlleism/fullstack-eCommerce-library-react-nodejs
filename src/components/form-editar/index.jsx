@@ -111,7 +111,7 @@ const FormCadastrar = () => {
                         </div>
                         <div className='campo-input'>
                             <span>Preço</span>
-                            <input id='valor' value={formulario?.preco} onBlur={() => setDefaultValor()} onChange={(e) => setFormulario({ ...formulario, preco: BRLConvert.format(e.target.value) })} />
+                            <input id='valor' defaultValue={formulario?.preco} onBlur={() => setDefaultValor()} onFocus={() => document.getElementById('valor').value = ''} onChange={(e) => setFormulario({ ...formulario, preco: BRLConvert.format(e.target.value) })} />
                         </div>
                     </div>
                     <div className='campo-input'>
